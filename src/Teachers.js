@@ -32,38 +32,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export function Teachers() {
+export function Teachers({ teachers, setTeacher }) {
   const navigate = useNavigate();
-  const teachers = [
-    {
-      id: "99",
-      name: "Paari",
-      Gender: "Male",
-      subject: "Tamil",
-      address: "Chidambaram",
-      email: "paari@gmail.com",
-      contact: 1234567890,
-    },
-    {
-      id: "100",
-      name: "Kabilar",
-      Gender: "Male",
-      subject: "English",
-      address: "Bangalore",
-      email: "kabilar@gmail.com",
-      contact: 1234567890,
-    },
-    {
-      id: "101",
-      name: "Kabilar",
-      Gender: "Male",
-      subject: "English",
-      address: "Bangalore",
-      email: "kabilar@gmail.com",
-      contact: 1234567890,
-    },
-  ];
-
   return (
     <div className="data">
       <h1 className="title">Welcome to Teachers datas</h1>
@@ -73,17 +43,15 @@ export function Teachers() {
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
               <StyledTableCell>NAME</StyledTableCell>
-              <StyledTableCell>STANDARD</StyledTableCell>
-              <StyledTableCell>BATCH</StyledTableCell>
-              <StyledTableCell>ADDRESS</StyledTableCell>
+              <StyledTableCell>GENDER</StyledTableCell>
+              <StyledTableCell>SUBJECT</StyledTableCell>
               <StyledTableCell>EMAIL</StyledTableCell>
-              <StyledTableCell>CONTACT</StyledTableCell>
               <StyledTableCell>ACTION</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {teachers.map((tech) => (
-              <StyledTableRow key={tech.id}>
+            {teachers.map((tech, index) => (
+              <StyledTableRow index={index} key={tech.id}>
                 <StyledTableCell component="th" scope="row">
                   {tech.id}
                 </StyledTableCell>
@@ -91,25 +59,27 @@ export function Teachers() {
                   {tech.name}
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row">
-                  {tech.standard}
+                  {tech.gender}
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row">
-                  {tech.batch}
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  {tech.address}
+                  {tech.subject}
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row">
                   {tech.email}
                 </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  {tech.contact}
-                </StyledTableCell>
                 <StyledTableCell>
-                  <IconButton variant="contained" color="success" onClick={()=>navigate("/teacher/details")}>
+                  <IconButton
+                    variant="contained"
+                    color="success"
+                    onClick={() => navigate(`/teacher/details/${index}`)}
+                  >
                     <InfoIcon></InfoIcon>
                   </IconButton>
-                  <IconButton variant="contained" color="success" onClick={()=>navigate("/teacher/edit")}>
+                  <IconButton
+                    variant="contained"
+                    color="success"
+                    onClick={() => navigate("/teacher/edit")}
+                  >
                     <EditIcon></EditIcon>
                   </IconButton>
                   <IconButton variant="contained" color="error">
@@ -122,7 +92,9 @@ export function Teachers() {
         </Table>
       </TableContainer>
       <div className="btn">
-        <Button variant="contained" onClick={()=>navigate("/add/teacher")}>Add Teacher</Button>
+        <Button variant="contained" onClick={() => navigate("/add/teacher")}>
+          Add Teacher
+        </Button>
       </div>
     </div>
   );

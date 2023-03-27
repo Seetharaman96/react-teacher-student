@@ -13,8 +13,67 @@ import { TeacherDetails } from "./TeacherDetails";
 import { StudentDetails } from "./StudentDetails";
 import { EditTeacher } from "./EditTeacher";
 import { EditStudent } from "./EditStudent";
+import { useState } from "react";
 
 function App() {
+  const [teachers, setTeacher] = useState([
+    {
+      id: "99",
+      name: "Paari",
+      gender: "Male",
+      subject: "Tamil",
+      address: "Chidambaram",
+      email: "paari@gmail.com",
+      contact: 1234567890,
+    },
+    {
+      id: "100",
+      name: "Kabilar",
+      gender: "Male",
+      subject: "English",
+      address: "Bangalore",
+      email: "kabilar@gmail.com",
+      contact: 1234567890,
+    },
+    {
+      id: "101",
+      name: "Thiruvalluvar",
+      gender: "Male",
+      subject: "Tamil",
+      address: "Chennai",
+      email: "thiruvalluvar@gmail.com",
+      contact: 1234567890,
+    },
+  ]);
+  const [students,setStudent] = useState([
+    {
+      id: "99",
+      name: "Seetharaman",
+      standard: "12",
+      batch: "B",
+      address: "Chidambaram",
+      email: "seetharaman@gmail.com",
+      contact: 9876543210,
+    },
+    {
+      id: "100",
+      name: "Krishnan",
+      standard: "12",
+      batch: "B",
+      address: "Chidambaram",
+      email: "krishnan@gmail.com",
+      contact: 9876543210,
+    },
+    {
+      id: "101",
+      name: "Dhanam",
+      standard: "12",
+      batch: "B",
+      address: "Chidambaram",
+      email: "dhanam@gmail.com",
+      contact: 9876543210,
+    },
+  ]);
   const navigate = useNavigate();
   return (
     <div className="App">
@@ -35,12 +94,12 @@ function App() {
       </Box>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/teachers" element={<Teachers />} />
-        <Route path="/students" element={<Students />} />
-        <Route path="/teacher/details" element={<TeacherDetails />} />
+        <Route path="/teachers" element={<Teachers teachers={teachers} setTeacher={setTeacher} />} />
+        <Route path="/students" element={<Students students={students} setStudent={setStudent} />} />
+        <Route path="/teacher/details/:id" element={<TeacherDetails teachers={teachers} />} />
         <Route path="/student/details" element={<StudentDetails />} />
-        <Route path="/add/teacher" element={<AddTeacher />} />
-        <Route path="/add/student" element={<AddStudent />} />
+        <Route path="/add/teacher" element={<AddTeacher teachers={teachers} setTeacher={setTeacher} />} />
+        <Route path="/add/student" element={<AddStudent students={students} setStudent={setStudent} />} />
         <Route path="/teacher/edit" element={<EditTeacher />} />
         <Route path="/student/edit" element={<EditStudent />} />
       </Routes>

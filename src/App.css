@@ -18,3 +18,15 @@
   margin: 0 auto;
   gap: 10px;
 }
+.teacher-details{
+  display: flex;
+  flex-direction: column;
+}
+.card{
+  max-width: 250px;
+  height: auto;
+  border: 1px solid purple;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}

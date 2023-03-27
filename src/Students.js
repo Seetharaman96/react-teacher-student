@@ -32,74 +32,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export function Students() {
-  const navigate = useNavigate()
-  const students = [
-    {
-      id: "99",
-      name: "Seetharaman",
-      standard: "12",
-      batch: "B",
-      address: "Chidambaram",
-      email: "seetharaman@gmail.com",
-      contact: 9876543210,
-    },
-    {
-      id: "100",
-      name: "Aadhira",
-      standard: "12",
-      batch: "B",
-      address: "Bangalore",
-      email: "aadhira@gmail.com",
-      contact: 9876543210,
-    },
-    {
-      id: "101",
-      name: "Krishnan",
-      standard: "12",
-      batch: "B",
-      address: "Chidambaram",
-      email: "krishnan@gmail.com",
-      contact: 9876543210,
-    },
-    {
-      id: "102",
-      name: "Dhanam",
-      standard: "12",
-      batch: "B",
-      address: "Chidambaram",
-      email: "dhanam@gmail.com",
-      contact: 9876543210,
-    },
-    {
-      id: "103",
-      name: "Raghu",
-      standard: "12",
-      batch: "B",
-      address: "Bangalore",
-      email: "raghu@gmail.com",
-      contact: 9876543210,
-    },
-    {
-      id: "104",
-      name: "Anbu",
-      standard: "12",
-      batch: "B",
-      address: "Bangalore",
-      email: "anbu@gmail.com",
-      contact: 9876543210,
-    },
-    {
-      id: "105",
-      name: "Aadhini",
-      standard: "12",
-      batch: "B",
-      address: "Trichy",
-      email: "aadhini@gmail.com",
-      contact: 9876543210,
-    },
-  ];
-
+export function Students({ students, setStudent }) {
+  const navigate = useNavigate();
   return (
     <div className="data">
       <h1 className="title">Welcome to Students datas</h1>
@@ -142,10 +76,18 @@ export function Students() {
                   {std.contact}
                 </StyledTableCell>
                 <StyledTableCell>
-                  <IconButton variant="contained" color="success" onClick={()=>navigate("/student/details")}>
+                  <IconButton
+                    variant="contained"
+                    color="success"
+                    onClick={() => navigate("/student/details")}
+                  >
                     <InfoIcon></InfoIcon>
                   </IconButton>
-                  <IconButton variant="contained" color="success" onClick={()=>navigate("/student/edit")}>
+                  <IconButton
+                    variant="contained"
+                    color="success"
+                    onClick={() => navigate("/student/edit")}
+                  >
                     <EditIcon></EditIcon>
                   </IconButton>
                   <IconButton variant="contained" color="error">
@@ -158,7 +100,9 @@ export function Students() {
         </Table>
       </TableContainer>
       <div className="btn">
-        <Button variant="contained" onClick={()=>navigate("/add/student")}>Add Student</Button>
+        <Button variant="contained" onClick={() => navigate("/add/student")}>
+          Add Student
+        </Button>
       </div>
     </div>
   );
