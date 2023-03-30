@@ -34,9 +34,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export function Teachers({ teachers, setTeacher }) {
   const navigate = useNavigate();
+  const deleteTeacher = (id) => {
+    const alterTeacher = teachers.filter((del)=>del.id !== id)
+    setTeacher(alterTeacher)
+  }
   return (
     <div className="data">
-      <h1 className="title">Welcome to Teachers datas</h1>
+      <h3 className="title">Welcome to Teachers datas</h3>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
@@ -70,7 +74,7 @@ export function Teachers({ teachers, setTeacher }) {
                 <StyledTableCell>
                   <IconButton
                     variant="contained"
-                    color="success"
+                    color="primary"
                     onClick={() => navigate(`/teacher/details/${index}`)}
                   >
                     <InfoIcon></InfoIcon>
@@ -78,11 +82,11 @@ export function Teachers({ teachers, setTeacher }) {
                   <IconButton
                     variant="contained"
                     color="success"
-                    onClick={() => navigate("/teacher/edit")}
+                    onClick={() => navigate(`/teacher/edit/${tech.id}`)}
                   >
                     <EditIcon></EditIcon>
                   </IconButton>
-                  <IconButton variant="contained" color="error">
+                  <IconButton variant="contained" color="error" onClick={()=>deleteTeacher(tech.id)}>
                     <DeleteIcon></DeleteIcon>
                   </IconButton>
                 </StyledTableCell>
@@ -93,7 +97,7 @@ export function Teachers({ teachers, setTeacher }) {
       </TableContainer>
       <div className="btn">
         <Button variant="contained" onClick={() => navigate("/add/teacher")}>
-          Add Teacher
+          Create Teacher Data
         </Button>
       </div>
     </div>

@@ -34,9 +34,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export function Students({ students, setStudent }) {
   const navigate = useNavigate();
+  const deleteStudent = (id) => {
+    const alterStudent = students.filter((del)=>del.id !== id)
+    setStudent(alterStudent);
+  }
   return (
     <div className="data">
-      <h1 className="title">Welcome to Students datas</h1>
+      <h3 className="title">Welcome to Students datas</h3>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
@@ -45,15 +49,13 @@ export function Students({ students, setStudent }) {
               <StyledTableCell>NAME</StyledTableCell>
               <StyledTableCell>STANDARD</StyledTableCell>
               <StyledTableCell>BATCH</StyledTableCell>
-              <StyledTableCell>ADDRESS</StyledTableCell>
               <StyledTableCell>EMAIL</StyledTableCell>
-              <StyledTableCell>CONTACT</StyledTableCell>
               <StyledTableCell>ACTION</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {students.map((std) => (
-              <StyledTableRow key={std.id}>
+            {students.map((std, index) => (
+              <StyledTableRow index={index} key={std.id}>
                 <StyledTableCell component="th" scope="row">
                   {std.id}
                 </StyledTableCell>
@@ -67,30 +69,24 @@ export function Students({ students, setStudent }) {
                   {std.batch}
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row">
-                  {std.address}
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
                   {std.email}
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  {std.contact}
                 </StyledTableCell>
                 <StyledTableCell>
                   <IconButton
                     variant="contained"
-                    color="success"
-                    onClick={() => navigate("/student/details")}
+                    color="primary"
+                    onClick={() => navigate(`/student/details/${index}`)}
                   >
                     <InfoIcon></InfoIcon>
                   </IconButton>
                   <IconButton
                     variant="contained"
                     color="success"
-                    onClick={() => navigate("/student/edit")}
+                    onClick={() => navigate(`/student/edit/${std.id}`)}
                   >
                     <EditIcon></EditIcon>
                   </IconButton>
-                  <IconButton variant="contained" color="error">
+                  <IconButton variant="contained" color="error" onClick={()=>deleteStudent(std.id)}>
                     <DeleteIcon></DeleteIcon>
                   </IconButton>
                 </StyledTableCell>
@@ -101,7 +97,7 @@ export function Students({ students, setStudent }) {
       </TableContainer>
       <div className="btn">
         <Button variant="contained" onClick={() => navigate("/add/student")}>
-          Add Student
+          Create Student Data
         </Button>
       </div>
     </div>

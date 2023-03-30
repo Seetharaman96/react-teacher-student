@@ -1,14 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button } from "@mui/material";
 
 export function TeacherDetails({ teachers }) {
+  const navigate = useNavigate();
   const { id } = useParams();
   const teacher = teachers[id];
   return (
-    <div className="teacher-details">
+    <div className="details">
       <h3>Hello all welcome to the teacher details page {teacher.name}</h3>
       <div className="card">
         <p>
-          <strong>ID :</strong>
+          <strong>Id :</strong>
           {teacher.id}
         </p>
         <p>
@@ -30,10 +32,16 @@ export function TeacherDetails({ teachers }) {
         <p>
           <strong>Email :</strong>
           {teacher.email}
-        </p><p>
+        </p>
+        <p>
           <strong>Contact :</strong>
           {teacher.contact}
         </p>
+      </div>
+      <div className="btn">
+        <Button variant="contained" onClick={() => navigate(-1)}>
+          ⬅Back
+        </Button>
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import { StudentDetails } from "./StudentDetails";
 import { EditTeacher } from "./EditTeacher";
 import { EditStudent } from "./EditStudent";
 import { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [teachers, setTeacher] = useState([
@@ -97,11 +98,11 @@ function App() {
         <Route path="/teachers" element={<Teachers teachers={teachers} setTeacher={setTeacher} />} />
         <Route path="/students" element={<Students students={students} setStudent={setStudent} />} />
         <Route path="/teacher/details/:id" element={<TeacherDetails teachers={teachers} />} />
-        <Route path="/student/details" element={<StudentDetails />} />
+        <Route path="/student/details/:id" element={<StudentDetails students={students} />} />
         <Route path="/add/teacher" element={<AddTeacher teachers={teachers} setTeacher={setTeacher} />} />
         <Route path="/add/student" element={<AddStudent students={students} setStudent={setStudent} />} />
-        <Route path="/teacher/edit" element={<EditTeacher />} />
-        <Route path="/student/edit" element={<EditStudent />} />
+        <Route path="/teacher/edit/:id" element={<EditTeacher teachers={teachers} setTeacher={setTeacher} />} />
+        <Route path="/student/edit/:id" element={<EditStudent students={students} setStudent={setStudent} />} />
       </Routes>
     </div>
   );
